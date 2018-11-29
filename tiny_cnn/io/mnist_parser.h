@@ -177,8 +177,11 @@ inline void parse_mnist_images(const std::string& image_file,
         throw nn_error("failed to open file:" + image_file);
 
     detail::mnist_header header;
+    header.num_items = 1;
+    header.num_rows = 1;
+    header.num_cols = 29;
 
-    detail::parse_mnist_header(ifs, header);
+    //detail::parse_mnist_header(ifs, header);
     for (uint32_t i = 0; i < header.num_items; i++) {
         vec_t image;
         detail::parse_mnist_image(ifs, header, scale_min, scale_max, x_padding, y_padding, image);
